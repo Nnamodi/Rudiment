@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Rudiment</string>
+    <string name="hello_roland">Hello Roland!</string>
+    <string name="my_first_app">My First App</string>
+    <string name="todo">TODO</string>
+    <string name="generate">generate</string>
+    <string name="dexterity">dexterity:</string>
+    <string name="strength">strength:</string>
+    <string name="wisdom">wisdom:</string>
+    <string name="stats">Stats</string>
+    <string name="race">race</string>
+    <string name="name">name</string>
+    <string name="quit">quit</string>
+</resources>
