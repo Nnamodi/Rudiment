@@ -1,5 +1,6 @@
 package android.bignerdranch.com
 
+import android.util.Log
 import kotlinx.coroutines.*
 import java.io.Serializable
 import java.net.URL
@@ -29,9 +30,10 @@ object CharacterGenerator {
     )
 }
 
-suspend fun fetchCharacterData(): CharacterGenerator.CharacterData {
-    return withContext(Dispatchers.Default) {
+fun fetchCharacterData(): CharacterGenerator.CharacterData {
+    return runBlocking(Dispatchers.IO) {
         val apiData = URL(CHARACTER_DATA_API).readText()
+        Log.d("Networking", "Character generating")
         CharacterGenerator.fromApiData(apiData)
     }
 }
