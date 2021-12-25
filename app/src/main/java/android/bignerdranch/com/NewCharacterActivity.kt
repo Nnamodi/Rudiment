@@ -2,6 +2,7 @@ package android.bignerdranch.com
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_new_character.*
 import kotlinx.coroutines.MainScope
@@ -25,7 +26,15 @@ class NewCharacterActivity : AppCompatActivity() {
         characterData = savedInstanceState?.characterData ?: CharacterGenerator.generate()
         generateButton.setOnClickListener {
             MainScope().launch {
-                characterData = fetchCharacterData()
+                try { characterData = fetchCharacterData() }
+                catch(e: Exception) {
+                    Log.e("Caught", "Caught: $e", e)
+                    Toast.makeText(
+                        this@NewCharacterActivity,
+                        R.string.error_message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
                 Log.d("Networking", "Character generated")
                 displayCharacterData()
             }
