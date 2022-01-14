@@ -2,6 +2,7 @@ package android.bignerdranch.com
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_new_character.*
@@ -25,6 +26,8 @@ class NewCharacterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_new_character)
         characterData = savedInstanceState?.characterData ?: CharacterGenerator.generate()
         generateButton.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
+            generateButton.text = ""
             MainScope().launch {
                 try { characterData = fetchCharacterData() }
                 catch(e: Exception) {
@@ -53,5 +56,7 @@ class NewCharacterActivity : AppCompatActivity() {
             wisdomTextView.text = wis
             strengthTextView.text = str
         }
+        progressBar.visibility = View.GONE
+        generateButton.text = getString(R.string.generate)
     }
 }
